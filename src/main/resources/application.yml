@@ -16,7 +16,8 @@ management:
       base-path: /metrics
       exposure:
         include: "health,info"
+
 server:
-  port :  9001
+  port: 9001
   servlet:
-    contextPath: /bff
+    context-path: /bff

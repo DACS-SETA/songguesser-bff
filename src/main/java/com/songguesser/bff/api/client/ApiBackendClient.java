@@ -1,44 +1,39 @@
 package com.songguesser.bff.api.client;
 
-import java.util.List;
-
+import com.songguesser.bff.dto.*;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.songguesser.bff.dto.AlumnoDto;
-import com.songguesser.bff.dto.BuildInfoDTO;
-
+import java.util.Optional;
 
 @FeignClient(
-			name = "apiBackendClient", 
-			url = "${feign.client.config.apiBackendClient.url}"
-			)
-
+    name = "apiBackendClient",
+    url = "${feign.client.config.apiBackendClient.url}"
+)
 public interface ApiBackendClient {
 
     @GetMapping("/ping")
     String ping();
-    
+
     @GetMapping("/version")
     BuildInfoDTO version();
-    
-    @GetMapping("/alumno")
-    List<AlumnoDto> alumnos();
-    
-    @GetMapping("/alumno/{id}")
-    AlumnoDto alumnoById(@PathVariable("id") Long id);
-    
-    @PostMapping("/alumno")
-    AlumnoDto save(@RequestBody AlumnoDto alumno);
-    
-    @PutMapping("/alumno")
-    AlumnoDto update(@RequestBody AlumnoDto alumno);
-    
-    @DeleteMapping("/alumno/{id}")
-    AlumnoDto delete(@PathVariable("id") Long id);
+
+    @GetMapping("/songs/random")
+    SongDto getRandomSong();
+
+    // ------------------------------
+    // 🎮 Game management
+    // ------------------------------
+
+    @PostMapping("/games/start")
+    GameStartResponseDto startNewGame();
+
+    @PostMapping("/games/{gameId}/round")
+    RoundResponseDto addRound(@PathVariable("gameId") Long gameId);
+
+    @PostMapping("/games/{gameId}/surrender")
+    void surrender(@PathVariable("gameId") Long gameId);
+
+    @GetMapping("/games/{gameId}/summary")
+    Optional<GameSummaryDto> getSummary(@PathVariable("gameId") Long gameId);
 }

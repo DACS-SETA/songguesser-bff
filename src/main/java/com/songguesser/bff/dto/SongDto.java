@@ -11,6 +11,7 @@ public class SongDto {
     private String trackName;
     private String collectionName;
     private String primaryGenreName;
+    private String releaseDate;
     private String artworkUrl100;
     private String previewUrl;
 }

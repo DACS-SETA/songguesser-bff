@@ -1,20 +1,20 @@
 package com.songguesser.bff.service;
 
-import java.util.List;
+import com.songguesser.bff.dto.*;
 
-import com.songguesser.bff.dto.AlumnoDto;
+import java.util.Optional;
 
 public interface ApiBackendService {
 
-	public String ping();
+    String ping();
 
-	public AlumnoDto getAlumnoById(Long id) throws Exception;
+    SongDto getRandomSong();
 
-	public List<AlumnoDto> getAlumnos();
+    GameStartResponseDto startGame();
 
-	public AlumnoDto savesAlumno(AlumnoDto alumno) throws Exception;
+    RoundResponseDto addRound(Long gameId);
 
-	public AlumnoDto updateAlumno(AlumnoDto alumno) throws Exception;
+    void surrender(Long gameId);
 
-	public AlumnoDto deleteAlumno(Long id) throws Exception;
+    Optional<GameSummaryDto> getSummary(Long gameId);
 }

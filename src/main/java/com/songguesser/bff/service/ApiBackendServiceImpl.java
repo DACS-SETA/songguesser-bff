@@ -1,54 +1,46 @@
 package com.songguesser.bff.service;
 
-import java.util.List;
 
+import com.songguesser.bff.api.client.ApiBackendClient;
+import com.songguesser.bff.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.songguesser.bff.api.client.ApiBackendClient;
-import com.songguesser.bff.dto.AlumnoDto;
+import java.util.Optional;
 
 @Service
-public class ApiBackendServiceImpl implements ApiBackendService{
+public class ApiBackendServiceImpl implements ApiBackendService {
 
-	@Autowired
-	private ApiBackendClient apiBackendClient;
-	
-	@Override
-	public String ping() {
-		return apiBackendClient.ping();
-	}
+    @Autowired
+    private ApiBackendClient apiBackendClient;
 
-	@Override
-	public AlumnoDto getAlumnoById(Long id) throws Exception {
-		//TODO validar parametro y lanzar exepcion
-		return apiBackendClient.alumnoById(id);
-	}
+    @Override
+    public String ping() {
+        return apiBackendClient.ping();
+    }
 
-	@Override
-	public List<AlumnoDto> getAlumnos() {
-		// TODO Auto-generated method stub
-		return apiBackendClient.alumnos();
-	}
+    @Override
+    public SongDto getRandomSong() {
+        return apiBackendClient.getRandomSong();
+    }
 
-	@Override
-	public AlumnoDto savesAlumno(AlumnoDto alumno) throws Exception {
-		//TODO validar parametro y lanzar exepcion
-		return apiBackendClient.save(alumno);
-	}
+    @Override
+    public GameStartResponseDto startGame() {
+        return apiBackendClient.startNewGame();
+    }
 
-	@Override
-	public AlumnoDto updateAlumno(AlumnoDto alumno) throws Exception {
-		//TODO validar parametro y lanzar exepcion
-		return apiBackendClient.update(alumno);
-	}
+    @Override
+    public RoundResponseDto addRound(Long gameId) {
+        return apiBackendClient.addRound(gameId);
+    }
 
-	@Override
-	public AlumnoDto deleteAlumno(Long id) throws Exception {
-		//TODO validar parametro y lanzar exepcion
-		return apiBackendClient.delete(id);
-	}
+    @Override
+    public void surrender(Long gameId) {
+        apiBackendClient.surrender(gameId);
+    }
 
-
-
+    @Override
+    public Optional<GameSummaryDto> getSummary(Long gameId) {
+        return apiBackendClient.getSummary(gameId);
+    }
 }

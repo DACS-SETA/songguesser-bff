@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.songguesser.bff.ApplicationContextProvider;
 import com.songguesser.bff.service.ApiBackendService;
-import com.songguesser.bff.service.ApiConectorService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,9 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value = "")
 public class HomeController {
 
-	@Autowired
-	private ApiConectorService apiConectorService;
-	
+
 	@Autowired
 	private ApiBackendService apiBackendService;
 	
@@ -29,6 +26,12 @@ public class HomeController {
 	}
 
 
+	@GetMapping("/ping")
+	public String ping() {
+	    return "pong from BFF";
+	}
+
+	
 	@GetMapping(value = "/version")
     public Object version() {
         return ApplicationContextProvider.getApplicationContext().getBean("buildInfo");
