@@ -9,4 +9,7 @@ import lombok.Setter;
 public class RoundResponseDto {
     private Long roundId;
     private SongDto song;
+    private Boolean isCorrect;
+    private Integer score;
+    private Boolean finished;
 }

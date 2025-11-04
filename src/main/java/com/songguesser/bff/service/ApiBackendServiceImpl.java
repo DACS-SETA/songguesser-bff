@@ -30,8 +30,8 @@ public class ApiBackendServiceImpl implements ApiBackendService {
     }
 
     @Override
-    public RoundResponseDto addRound(Long gameId) {
-        return apiBackendClient.addRound(gameId);
+    public RoundResponseDto addRound(Long gameId, GuessDto guess) {
+        return apiBackendClient.addRound(gameId, guess);
     }
 
     @Override

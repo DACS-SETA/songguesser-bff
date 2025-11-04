@@ -4,6 +4,7 @@ import com.songguesser.bff.api.client.ApiBackendClient;
 import com.songguesser.bff.dto.GameStartResponseDto;
 import com.songguesser.bff.dto.RoundResponseDto;
 import com.songguesser.bff.dto.GameSummaryDto;
+import com.songguesser.bff.dto.GuessDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,9 +34,14 @@ public class GameController {
     // ➕ Add new round
     // ------------------------------
     @PostMapping("/{gameId}/round")
-    public RoundResponseDto addRound(@PathVariable Long gameId) {
-        log.info("→ BFF agregando ronda a partida {}", gameId);
-        return backendClient.addRound(gameId);
+    public RoundResponseDto addRound(@PathVariable Long gameId, @RequestBody(required = false) GuessDto guess) {
+        if (guess != null && guess.getGuess() != null && !guess.getGuess().isBlank()) {
+            log.info("→ BFF procesando respuesta para partida {}: {}", gameId, guess.getGuess());
+            return backendClient.addRound(gameId, guess);
+        } else {
+            log.info("→ BFF agregando ronda a partida {}", gameId);
+            return backendClient.addRound(gameId, null);
+        }
     }
 
     // ------------------------------

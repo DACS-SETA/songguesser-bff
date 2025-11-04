@@ -13,6 +13,8 @@ import com.songguesser.bff.dto.GitInfoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.NoArgsConstructor;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @NoArgsConstructor
@@ -44,5 +46,10 @@ public class BffConfiguration {
 			logger.error(e.getMessage());
 		}
 		return versionInfo;
+	}
+
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		return builder.build();
 	}
 }

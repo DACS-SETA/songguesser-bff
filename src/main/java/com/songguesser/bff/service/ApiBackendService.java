@@ -12,7 +12,7 @@ public interface ApiBackendService {
 
     GameStartResponseDto startGame();
 
-    RoundResponseDto addRound(Long gameId);
+    RoundResponseDto addRound(Long gameId, GuessDto guess);
 
     void surrender(Long gameId);
 

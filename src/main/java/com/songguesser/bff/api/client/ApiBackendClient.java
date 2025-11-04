@@ -29,7 +29,7 @@ public interface ApiBackendClient {
     GameStartResponseDto startNewGame();
 
     @PostMapping("/games/{gameId}/round")
-    RoundResponseDto addRound(@PathVariable("gameId") Long gameId);
+    RoundResponseDto addRound(@PathVariable("gameId") Long gameId, @RequestBody(required = false) GuessDto guess);
 
     @PostMapping("/games/{gameId}/surrender")
     void surrender(@PathVariable("gameId") Long gameId);
