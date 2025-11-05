@@ -6,6 +6,7 @@ import com.songguesser.bff.dto.RoundResponseDto;
 import com.songguesser.bff.dto.GameSummaryDto;
 import com.songguesser.bff.dto.GuessDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class GameController {
             return backendClient.addRound(gameId, guess);
         } else {
             log.info("→ BFF agregando ronda a partida {}", gameId);
-            return backendClient.addRound(gameId, null);
+            return backendClient.addRound(gameId, new GuessDto());
         }
     }
 
@@ -48,9 +49,9 @@ public class GameController {
     // 🏳️ Surrender game
     // ------------------------------
     @PostMapping("/{gameId}/surrender")
-    public void surrender(@PathVariable Long gameId) {
+    public Optional<GameSummaryDto> surrender(@PathVariable Long gameId) {
         log.info("→ BFF marcando partida {} como rendida", gameId);
-        backendClient.surrender(gameId);
+        return backendClient.surrender(gameId);
     }
 
     // ------------------------------

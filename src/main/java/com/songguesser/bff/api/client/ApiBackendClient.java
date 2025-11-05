@@ -32,7 +32,7 @@ public interface ApiBackendClient {
     RoundResponseDto addRound(@PathVariable("gameId") Long gameId, @RequestBody(required = false) GuessDto guess);
 
     @PostMapping("/games/{gameId}/surrender")
-    void surrender(@PathVariable("gameId") Long gameId);
+    Optional<GameSummaryDto> surrender(@PathVariable("gameId") Long gameId);
 
     @GetMapping("/games/{gameId}/summary")
     Optional<GameSummaryDto> getSummary(@PathVariable("gameId") Long gameId);

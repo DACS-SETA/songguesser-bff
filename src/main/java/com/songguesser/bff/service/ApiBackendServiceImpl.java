@@ -35,8 +35,8 @@ public class ApiBackendServiceImpl implements ApiBackendService {
     }
 
     @Override
-    public void surrender(Long gameId) {
-        apiBackendClient.surrender(gameId);
+    public Optional<GameSummaryDto> surrender(Long gameId) {
+        return apiBackendClient.surrender(gameId);
     }
 
     @Override

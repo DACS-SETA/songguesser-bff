@@ -14,7 +14,7 @@ public interface ApiBackendService {
 
     RoundResponseDto addRound(Long gameId, GuessDto guess);
 
-    void surrender(Long gameId);
+    Optional<GameSummaryDto> surrender(Long gameId);
 
     Optional<GameSummaryDto> getSummary(Long gameId);
 }
