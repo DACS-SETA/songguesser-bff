@@ -3,6 +3,7 @@ package com.songguesser.bff.controller;
 import com.songguesser.bff.api.client.ApiBackendClient;
 import com.songguesser.bff.dto.GameStartResponseDto;
 import com.songguesser.bff.dto.RoundResponseDto;
+import com.songguesser.bff.util.JwtUtils;
 import com.songguesser.bff.dto.GameSummaryDto;
 import com.songguesser.bff.dto.GuessDto;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,13 @@ public class GameController {
     // 🎮 Start new game
     // ------------------------------
     @PostMapping("/start")
-    public GameStartResponseDto startNewGame() {
-        log.info("→ BFF solicitando creación de partida al backend...");
-        return backendClient.startNewGame();
+    public GameStartResponseDto startNewGame(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        String keycloakId = JwtUtils.extractSub(token); 
+        log.info("→ Creando partida para usuario {}", keycloakId);
+        return backendClient.startNewGame(keycloakId);
     }
+
 
     // ------------------------------
     // ➕ Add new round

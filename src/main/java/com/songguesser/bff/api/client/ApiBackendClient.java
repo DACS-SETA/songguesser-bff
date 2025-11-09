@@ -26,7 +26,8 @@ public interface ApiBackendClient {
     // ------------------------------
 
     @PostMapping("/games/start")
-    GameStartResponseDto startNewGame();
+    GameStartResponseDto startNewGame(@RequestParam("keycloakId") String keycloakId);
+
 
     @PostMapping("/games/{gameId}/round")
     RoundResponseDto addRound(@PathVariable("gameId") Long gameId, @RequestBody(required = false) GuessDto guess);
@@ -36,4 +37,11 @@ public interface ApiBackendClient {
 
     @GetMapping("/games/{gameId}/summary")
     Optional<GameSummaryDto> getSummary(@PathVariable("gameId") Long gameId);
+    
+    @PostMapping("/users/sync")
+    void syncUser(@RequestBody UserDto userDto);
+
+    
+    
 }
+

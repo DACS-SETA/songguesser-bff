@@ -10,7 +10,7 @@ public interface ApiBackendService {
 
     SongDto getRandomSong();
 
-    GameStartResponseDto startGame();
+    GameStartResponseDto startGame(String keycloakId); 
 
     RoundResponseDto addRound(Long gameId, GuessDto guess);
 

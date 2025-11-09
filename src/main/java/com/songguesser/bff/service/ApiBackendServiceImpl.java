@@ -25,9 +25,10 @@ public class ApiBackendServiceImpl implements ApiBackendService {
     }
 
     @Override
-    public GameStartResponseDto startGame() {
-        return apiBackendClient.startNewGame();
+    public GameStartResponseDto startGame(String keycloakId) {
+        return apiBackendClient.startNewGame(keycloakId);
     }
+
 
     @Override
     public RoundResponseDto addRound(Long gameId, GuessDto guess) {
