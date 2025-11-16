@@ -6,6 +6,7 @@ import com.songguesser.bff.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +44,9 @@ public class ApiBackendServiceImpl implements ApiBackendService {
     @Override
     public Optional<GameSummaryDto> getSummary(Long gameId) {
         return apiBackendClient.getSummary(gameId);
+    }
+    
+    public List<UserRankingDto> getRanking() {
+        return apiBackendClient.getRanking();
     }
 }
