@@ -45,6 +45,11 @@ public interface ApiBackendClient {
     @GetMapping("/users/ranking")
     List<UserRankingDto> getRanking();
 
+    @GetMapping("/users/profile")
+    UserProfileDto getUserProfile(@RequestParam("keycloakId") String keycloakId);
+
+    @PutMapping("/users/profile")
+    void updateProfile(@RequestParam("keycloakId") String keycloakId, @RequestBody UpdateProfileDto dto);
 
     
     

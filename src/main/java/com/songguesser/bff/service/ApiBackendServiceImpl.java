@@ -49,4 +49,14 @@ public class ApiBackendServiceImpl implements ApiBackendService {
     public List<UserRankingDto> getRanking() {
         return apiBackendClient.getRanking();
     }
+
+    @Override
+    public UserProfileDto getUserProfile(String keycloakId) {
+        return apiBackendClient.getUserProfile(keycloakId);
+    }
+
+    @Override
+    public void updateProfile(String keycloakId, UpdateProfileDto dto) {
+        apiBackendClient.updateProfile(keycloakId, dto);
+    }
 }
