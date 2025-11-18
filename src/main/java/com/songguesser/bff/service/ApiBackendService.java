@@ -19,6 +19,8 @@ public interface ApiBackendService {
 
     Optional<GameSummaryDto> getSummary(Long gameId);
 
+        Optional<GameSummaryDto> finish(Long gameId);
+
     List<UserRankingDto> getRanking();
 
     UserProfileDto getUserProfile(String keycloakId);

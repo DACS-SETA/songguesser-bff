@@ -38,6 +38,9 @@ public interface ApiBackendClient {
 
     @GetMapping("/games/{gameId}/summary")
     Optional<GameSummaryDto> getSummary(@PathVariable("gameId") Long gameId);
+
+        @PostMapping("/games/{gameId}/finish")
+        Optional<GameSummaryDto> finish(@PathVariable("gameId") Long gameId);
     
     @PostMapping("/users/sync")
     void syncUser(@RequestBody UserDto userDto);

@@ -66,4 +66,13 @@ public class GameController {
         log.info("→ BFF obteniendo resumen de partida {}", gameId);
         return backendClient.getSummary(gameId);
     }
+
+        // ------------------------------
+        // 🏁 Finish game
+        // ------------------------------
+        @PostMapping("/{gameId}/finish")
+        public Optional<GameSummaryDto> finish(@PathVariable Long gameId) {
+            log.info("→ BFF finalizando partida {}", gameId);
+            return backendClient.finish(gameId);
+        }
 }

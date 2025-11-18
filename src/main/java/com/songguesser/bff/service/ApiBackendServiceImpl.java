@@ -45,6 +45,11 @@ public class ApiBackendServiceImpl implements ApiBackendService {
     public Optional<GameSummaryDto> getSummary(Long gameId) {
         return apiBackendClient.getSummary(gameId);
     }
+
+        @Override
+        public Optional<GameSummaryDto> finish(Long gameId) {
+            return apiBackendClient.finish(gameId);
+        }
     
     public List<UserRankingDto> getRanking() {
         return apiBackendClient.getRanking();
