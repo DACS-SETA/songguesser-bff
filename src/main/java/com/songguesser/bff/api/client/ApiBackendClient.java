@@ -27,11 +27,11 @@ public interface ApiBackendClient {
     // ------------------------------
 
     @PostMapping("/games/start")
-    GameStartResponseDto startNewGame(@RequestParam("keycloakId") String keycloakId);
+    GameStartResponseDto startNewGame(@RequestParam("keycloakId") String keycloakId, @RequestParam("language") String language);
 
 
     @PostMapping("/games/{gameId}/round")
-    RoundResponseDto addRound(@PathVariable("gameId") Long gameId, @RequestBody(required = false) GuessDto guess);
+    RoundResponseDto addRound(@PathVariable("gameId") Long gameId, @RequestBody(required = false) GuessDto guess, @RequestParam("language") String language);
 
     @PostMapping("/games/{gameId}/surrender")
     Optional<GameSummaryDto> surrender(@PathVariable("gameId") Long gameId);

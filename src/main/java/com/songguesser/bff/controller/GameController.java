@@ -27,11 +27,11 @@ public class GameController {
     // 🎮 Start new game
     // ------------------------------
     @PostMapping("/start")
-    public GameStartResponseDto startNewGame(@RequestHeader("Authorization") String authHeader) {
+    public GameStartResponseDto startNewGame(@RequestHeader("Authorization") String authHeader, @RequestParam(required = false) String language) {
         String token = authHeader.replace("Bearer ", "");
         String keycloakId = JwtUtils.extractSub(token); 
-        log.info("→ Creando partida para usuario {}", keycloakId);
-        return backendClient.startNewGame(keycloakId);
+        log.info("→ Creando partida para usuario {} con idioma {}", keycloakId, language);
+        return backendClient.startNewGame(keycloakId, language);
     }
 
 
@@ -39,13 +39,13 @@ public class GameController {
     // ➕ Add new round
     // ------------------------------
     @PostMapping("/{gameId}/round")
-    public RoundResponseDto addRound(@PathVariable Long gameId, @RequestBody(required = false) GuessDto guess) {
+    public RoundResponseDto addRound(@PathVariable Long gameId, @RequestBody(required = false) GuessDto guess, @RequestParam(required = false) String language) {
         if (guess != null && guess.getGuess() != null && !guess.getGuess().isBlank()) {
-            log.info("→ BFF procesando respuesta para partida {}: {}", gameId, guess.getGuess());
-            return backendClient.addRound(gameId, guess);
+            log.info("→ BFF procesando respuesta para partida {}: {} con idioma {}", gameId, guess.getGuess(), language);
+            return backendClient.addRound(gameId, guess, language);
         } else {
-            log.info("→ BFF agregando ronda a partida {}", gameId);
-            return backendClient.addRound(gameId, new GuessDto());
+            log.info("→ BFF agregando ronda a partida {} con idioma {}", gameId, language);
+            return backendClient.addRound(gameId, new GuessDto(), language);
         }
     }
 

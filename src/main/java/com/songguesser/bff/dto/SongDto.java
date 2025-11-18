@@ -14,4 +14,5 @@ public class SongDto {
     private String releaseDate;
     private String artworkUrl100;
     private String previewUrl;
+    private String language;
 }
