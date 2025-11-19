@@ -13,6 +13,8 @@ import java.util.Optional;
 )
 public interface ApiBackendClient {
 
+	// Check end points
+	
     @GetMapping("/ping")
     String ping();
 
@@ -22,10 +24,8 @@ public interface ApiBackendClient {
     @GetMapping("/songs/random")
     SongDto getRandomSong();
 
-    // ------------------------------
-    // 🎮 Game management
-    // ------------------------------
-
+    // Game end points
+    
     @PostMapping("/games/start")
     GameStartResponseDto startNewGame(@RequestParam("keycloakId") String keycloakId);
 
@@ -38,6 +38,9 @@ public interface ApiBackendClient {
 
     @GetMapping("/games/{gameId}/summary")
     Optional<GameSummaryDto> getSummary(@PathVariable("gameId") Long gameId);
+    
+    
+    // User end points
     
     @PostMapping("/users/sync")
     void syncUser(@RequestBody UserDto userDto);

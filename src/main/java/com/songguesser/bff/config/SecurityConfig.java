@@ -27,7 +27,7 @@ public class SecurityConfig {
 		
 		// Permite el origen de tu aplicación de Angular. Es crucial para resolver tu error.
 		// En un entorno de producción, reemplaza "http://localhost:4200" con el dominio de tu frontend.
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200","https://songguesser.localhost"));
 		
 		// Permite todos los encabezados HTTP.
 		config.setAllowedHeaders(Arrays.asList("*"));

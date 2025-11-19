@@ -23,9 +23,8 @@ public class GameController {
         this.backendClient = backendClient;
     }
 
-    // ------------------------------
-    // 🎮 Start new game
-    // ------------------------------
+    // Start new game
+
     @PostMapping("/start")
     public GameStartResponseDto startNewGame(@RequestHeader("Authorization") String authHeader) {
         String token = authHeader.replace("Bearer ", "");
@@ -35,9 +34,7 @@ public class GameController {
     }
 
 
-    // ------------------------------
-    // ➕ Add new round
-    // ------------------------------
+    // Add new round
     @PostMapping("/{gameId}/round")
     public RoundResponseDto addRound(@PathVariable Long gameId, @RequestBody(required = false) GuessDto guess) {
         if (guess != null && guess.getGuess() != null && !guess.getGuess().isBlank()) {
@@ -49,18 +46,14 @@ public class GameController {
         }
     }
 
-    // ------------------------------
-    // 🏳️ Surrender game
-    // ------------------------------
+    // Surrender game
     @PostMapping("/{gameId}/surrender")
     public Optional<GameSummaryDto> surrender(@PathVariable Long gameId) {
         log.info("→ BFF marcando partida {} como rendida", gameId);
         return backendClient.surrender(gameId);
     }
 
-    // ------------------------------
-    // 📊 Get game summary
-    // ------------------------------
+    // Get game summary
     @GetMapping("/{gameId}/summary")
     public Optional<GameSummaryDto> getSummary(@PathVariable Long gameId) {
         log.info("→ BFF obteniendo resumen de partida {}", gameId);
